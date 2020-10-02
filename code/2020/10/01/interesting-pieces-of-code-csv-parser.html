@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title> Interesting pieces of code- CSV parser — code I find interesting &raquo;  DaniaEs</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link rel="canonical" href="https://dania.es/code/2020/10/01/interesting-pieces-of-code-csv-parser.html">
+        
+
+
+
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Interesting pieces of code- CSV parser" />
+<meta name="twitter:description" content="" />
+<meta name="twitter:image" content="https://dania.es" />
+
+<!-- Google plus -->
+<meta name="author" content="">
+<link rel="author" href="">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Interesting pieces of code- CSV parser">
+<meta property="og:description" content="">
+<meta property="og:url" content="https://dania.es/code/2020/10/01/interesting-pieces-of-code-csv-parser.html">
+<meta property="og:site_name" content="DaniaEs">
+
+        <link href='https://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/assets/vendor/normalize-css/normalize.css">
+<link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/assets/vendor/highlight/styles/solarized_dark.css">
+
+<link rel="stylesheet" href="/assets/vendor/font-awesome/css/font-awesome.css">
+
+    </head>
+
+    <body>
+        <div class="wrapper">
+            <header class="header">
+    <div class="navigation">
+        <a href="/" class="logo">DaniaEs</a>
+
+        <ul class="menu">
+            <li class="menu__entry"><a href="/about">About</a></li>
+            <li class="menu__entry"><a href="/">Blog</a></li>
+        </ul>
+    </div>
+
+    <ul class="social-links">
+        
+            <a href="https://github.com/dania02525" class="social-links__entry" target="_blank">
+                <i class="fa fa-github"></i>
+            </a>
+        
+
+        
+    </ul>
+</header>
+
+            <h1 class="page-title post-title">
+    <div class="page-title__text post-title__text">Interesting pieces of code- CSV parser</div>
+    <div class="page-title__subtitle post-title__subtitle">code I find interesting</div>
+</h1>
+
+<div class="content">
+    <p>This is an ongoing series of interesting code snippets, what they do and why I used them.</p>
+
+<hr />
+
+<p>Here is a CSV parser.  I wrote this for an interview one time, actually, I wrote it wrong twice, and then wrote this, which is less wrong and more succinct.</p>
+
+<p>I like this because it takes the essential building blocks of any CSV file, namely a row and a field, and iterates through those to <code class="language-plaintext highlighter-rouge">split_elements</code> for each of them.  The <code class="language-plaintext highlighter-rouge">split_elements</code> method serves both purposes and is a general purpose method that is likable.  Finally, when we’ve reached the lowest divisable level by splitting the split rows, we call the less likeable method <code class="language-plaintext highlighter-rouge">unquote</code>.  I think Ruby has provided us ham-fisted tools for what this method does, or maybe I was ham fisted when I wrote this having expended my creative energies on the <code class="language-plaintext highlighter-rouge">split_elements</code> method.  The <code class="language-plaintext highlighter-rouge">unquote</code> here has the uneviable task of matching arbitrary quote chars which are not preceeded by escape chars.  Think about something like <code class="language-plaintext highlighter-rouge">"foo says \"bar\""</code>.  As we iterate through each character of the string after the first (which we expect to be a quote char if the field contains a quote), we have three choices.</p>
+
+<ol>
+  <li>We’re dealing with the char <em>after</em> a quote char</li>
+  <li>We’re dealing with an escape char, something like <code class="language-plaintext highlighter-rouge">\</code>.</li>
+  <li>We’re dealing with some other character</li>
+</ol>
+
+<p>At first glance, the splitting of elements shouldn’t be so complicated, after all can’t we just iterate through until we find an unescaped quote character?.  The answer is no, and this was why I implemented this wrongly twice before writing this.  It is wrong becuase of <em>nested quotes</em>.  We must split rows, then fields holistically, and cannot determine if we are in a row or field without looking at the document as a whole.  Since we do have to look at the whole document, this exposes a potential attack vector for this piece of code.  Think about what would happen if this code was given a massive document, with millions of rows (or millions of fields in one row).  Attempting to split and process each of the documents elements would exhaust the Ruby VM’s memory.  It is for this reason that the solution here is a fun thing to submit for an interview, but is not something you’d want to use for real.</p>
+
+<p>I did not take the job, but I appreciated the nature of the code challenge.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">CSV</span>
+  <span class="nb">attr_reader</span> <span class="ss">:col_sep</span><span class="p">,</span> <span class="ss">:row_sep</span><span class="p">,</span> <span class="ss">:quote_char</span>
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">col_sep</span> <span class="o">=</span> <span class="s2">","</span><span class="p">,</span> <span class="n">quote_char</span> <span class="o">=</span> <span class="s1">'"'</span><span class="p">,</span> <span class="n">row_sep</span> <span class="o">=</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">new</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">col_sep</span><span class="p">,</span> <span class="n">quote_char</span><span class="p">,</span> <span class="n">row_sep</span><span class="p">).</span><span class="nf">parse!</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">col_sep</span> <span class="o">=</span> <span class="s2">","</span><span class="p">,</span> <span class="n">quote_char</span> <span class="o">=</span> <span class="s1">'"'</span><span class="p">,</span> <span class="n">row_sep</span> <span class="o">=</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+    <span class="vi">@input</span>      <span class="o">=</span> <span class="n">string</span>
+    <span class="vi">@col_sep</span>    <span class="o">=</span> <span class="n">col_sep</span>
+    <span class="vi">@row_sep</span>    <span class="o">=</span> <span class="n">row_sep</span>
+    <span class="vi">@quote_char</span> <span class="o">=</span> <span class="n">quote_char</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">parse!</span>
+    <span class="n">split_elements</span><span class="p">(</span><span class="vi">@input</span><span class="p">,</span> <span class="n">row_sep</span><span class="p">).</span><span class="nf">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">row</span><span class="o">|</span>
+      <span class="n">split_elements</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col_sep</span><span class="p">).</span><span class="nf">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">field</span><span class="o">|</span>
+        <span class="n">unquote</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="kp">private</span>
+
+  <span class="k">def</span> <span class="nf">unquote</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">field</span> <span class="k">unless</span> <span class="n">field</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">quote_char</span>
+    <span class="n">buffer</span> <span class="o">=</span> <span class="s2">""</span>
+    <span class="n">escape</span> <span class="o">=</span> <span class="kp">false</span>
+    <span class="n">field</span><span class="p">.</span><span class="nf">chars</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">char</span><span class="o">|</span>
+      <span class="k">if</span> <span class="n">escape</span>
+        <span class="n">buffer</span> <span class="o">&lt;&lt;</span> <span class="n">char</span>
+        <span class="n">escape</span> <span class="o">=</span> <span class="kp">false</span>
+      <span class="k">elsif</span> <span class="n">char</span> <span class="o">==</span> <span class="n">quote_char</span>
+        <span class="n">escape</span> <span class="o">=</span> <span class="kp">true</span>
+      <span class="k">else</span>
+        <span class="n">buffer</span> <span class="o">&lt;&lt;</span> <span class="n">char</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+    <span class="n">buffer</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">split_elements</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">separator</span><span class="p">)</span>
+    <span class="n">arr</span> <span class="o">=</span> <span class="n">string</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="n">separator</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="s2">""</span><span class="p">]</span> <span class="k">if</span> <span class="n">arr</span><span class="p">.</span><span class="nf">length</span> <span class="o">==</span> <span class="mi">0</span>
+    <span class="n">acc</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="kp">loop</span> <span class="k">do</span>
+      <span class="k">break</span> <span class="k">if</span> <span class="n">arr</span><span class="p">.</span><span class="nf">length</span> <span class="o">==</span> <span class="mi">0</span>
+      <span class="n">acc</span> <span class="o">&lt;&lt;</span> <span class="n">arr</span><span class="p">.</span><span class="nf">shift</span>
+      <span class="kp">loop</span> <span class="k">do</span>
+        <span class="k">break</span> <span class="k">if</span> <span class="n">acc</span><span class="p">.</span><span class="nf">last</span><span class="p">.</span><span class="nf">scan</span><span class="p">(</span><span class="n">quote_char</span><span class="p">).</span><span class="nf">count</span><span class="p">.</span><span class="nf">even?</span>
+        <span class="k">raise</span> <span class="no">ArgumentError</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">"unclosed quote"</span><span class="p">)</span> <span class="k">if</span> <span class="n">arr</span><span class="p">.</span><span class="nf">length</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="n">acc</span><span class="p">.</span><span class="nf">last</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">separator</span> <span class="o">+</span> <span class="n">arr</span><span class="p">.</span><span class="nf">shift</span><span class="p">)</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+    <span class="n">acc</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+
+</div>
+
+<div class="about">
+    <div class="about__devider">*****</div>
+    <div class="about__text">
+        Written by <strong>  Dania Es </strong>
+        on <strong>01 October 2020</strong>
+    </div>
+</div>
+
+
+        </div>
+
+        <script src="/assets/vendor/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+        
+    </body>
+</html>
