@@ -5,9 +5,41 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 24 Jul 2023 15:58:43 -0400</pubDate>
-    <lastBuildDate>Mon, 24 Jul 2023 15:58:43 -0400</lastBuildDate>
-    <generator>Jekyll v4.1.0</generator>
+    <pubDate>Mon, 02 Mar 2026 00:33:56 +0100</pubDate>
+    <lastBuildDate>Mon, 02 Mar 2026 00:33:56 +0100</lastBuildDate>
+    <generator>Jekyll v4.4.1</generator>
+    
+      <item>
+        <title>Engineering time and cost - decanter of ideas</title>
+        <description>&lt;p&gt;&lt;em&gt;your org rarely has good ideas.  ideas being expensive to implement was actually helping&lt;/em&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;This is a quote from Dax Raad from an X post.  This is something most engineers in the tech industry have understood for some time.  There are all kinds of ideas presented to us as the next big disrupter, and the ideas that get built fall into two categories:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Ideas that are championed by people with enough money to see them through.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Ideas good enough to survive second-guessing by engineering minds and understandable enough to attract the people who control the funding.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Ideas that do not fall into these two categories languish or at best become hobby projects.  You might say that this is not a very merit-based system (and the tech industry prides itself on being merit-based), but this has been my experience.  Since the inception of this system,  we have been on a slow march toward lower barriers to entry in building products.  As our tools improved, smaller and smaller teams could achieve things that brought real value to paying customers.&lt;/p&gt;
+
+&lt;p&gt;At the same time, engineering costs have increased alongside productivity.  The moat around bad ideas being built stayed mostly intact.  Someone with enough money has always been able to pay for bad ideas to be built (See Jucero, etc), but the engineering time forced a careful budgeting of what was built.  We have come to a crossroads with the wide availability of LLMs.  Even considering token costs, it will become much cheaper to execute on some basic level.  This does not put engineers out of a job, because the same amount of good ideas exist and require real creativity to take from concept to production.  It does, however, mean that we are about to see a lot of really bad ideas flood the market and inevitably siphon funding from good ideas while eroding collective sentiment about technology.&lt;/p&gt;
+
+&lt;p&gt;We are headed into a new wild west era which only the very oldest millenials have any familiarity with.  The next Pets.com will be a tsunami of vibe-coded half baked ideas with perfectly passable styling, graphics, marketing language but with no path to becoming an actual business or useful product.  How will we know the slop from the next Amazon.com? It is hard to know anything about the fundamentals behind a product without peeking behind the curtains.  My positive hope for this change is that more good ideas will survive second-guessing by engineers because it has already become easier to quickly validate ideas through fast prototyping.  Also, we suck at design and LLM-based design is good enough.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 01 Mar 2026 00:38:18 +0100</pubDate>
+        <link>http://localhost:4000/misc/2026/03/01/engineering-time-decanter-of-ideas.html</link>
+        <guid isPermaLink="true">http://localhost:4000/misc/2026/03/01/engineering-time-decanter-of-ideas.html</guid>
+        
+        
+        <category>misc</category>
+        
+      </item>
     
       <item>
         <title>Interesting pieces of code- CSV parser</title>
@@ -32,11 +64,11 @@
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;CSV&lt;/span&gt;
   &lt;span class=&quot;nb&quot;&gt;attr_reader&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:col_sep&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:row_sep&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:quote_char&lt;/span&gt;
 
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;col_sep&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;,&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;quote_char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&quot;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;row_sep&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;col_sep&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;,&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;quote_char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;&quot;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;row_sep&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;col_sep&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;quote_char&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;row_sep&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;parse!&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;initialize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;col_sep&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;,&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;quote_char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&quot;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;row_sep&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;initialize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;col_sep&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;,&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;quote_char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;&quot;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;row_sep&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;vi&quot;&gt;@input&lt;/span&gt;      &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;
     &lt;span class=&quot;vi&quot;&gt;@col_sep&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;col_sep&lt;/span&gt;
     &lt;span class=&quot;vi&quot;&gt;@row_sep&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;row_sep&lt;/span&gt;
@@ -88,7 +120,7 @@
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 </description>
-        <pubDate>Thu, 01 Oct 2020 14:59:45 -0400</pubDate>
+        <pubDate>Thu, 01 Oct 2020 20:59:45 +0200</pubDate>
         <link>http://localhost:4000/code/2020/10/01/interesting-pieces-of-code-csv-parser.html</link>
         <guid isPermaLink="true">http://localhost:4000/code/2020/10/01/interesting-pieces-of-code-csv-parser.html</guid>
         
@@ -104,7 +136,7 @@
 &lt;p&gt;Think about the things around us built out of aluminum.  You’re bicycle rack on your car, your rain design mStand, and airplanes.  Each of these things is slowly inching towards certain eventual failure due to fatigue stress.  Aluminum is born of a violent process, then welded with fire and electricity ultimately to shine in beauty unmolested by objectionable corrosion for a finite amount of time before being inevitably recycled.&lt;/p&gt;
 
 </description>
-        <pubDate>Thu, 01 Oct 2020 14:47:07 -0400</pubDate>
+        <pubDate>Thu, 01 Oct 2020 20:47:07 +0200</pubDate>
         <link>http://localhost:4000/metal/2020/10/01/aluminum-fatigue.html</link>
         <guid isPermaLink="true">http://localhost:4000/metal/2020/10/01/aluminum-fatigue.html</guid>
         

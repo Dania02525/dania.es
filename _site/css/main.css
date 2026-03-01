@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /* =Colors */
 /* =Base */
-body { font-family: "Inconsolata"; color: #333333; background-color: #F5F5F5; background-image: url(../img/bg.jpg); }
+body { font-family: "Inconsolata"; color: #333333; background-color: #F5F5F5; background-image: url(../img/bg.jpg); background-size: cover; }
 
 a { color: #574d4d; font-weight: bold; text-decoration: none; }
 

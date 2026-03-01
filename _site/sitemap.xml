@@ -3,9 +3,24 @@
   
     
     <url>
+      <loc>http://localhost:4000/misc/2026/03/01/engineering-time-decanter-of-ideas.html/</loc>
+      
+        <lastmod>2026-03-01T00:38:18+01:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.7</priority>
+      
+    </url>
+    
+  
+    
+    <url>
       <loc>http://localhost:4000/code/2020/10/01/interesting-pieces-of-code-csv-parser.html/</loc>
       
-        <lastmod>2020-10-01T14:59:45-04:00</lastmod>
+        <lastmod>2020-10-01T20:59:45+02:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -20,7 +35,7 @@
     <url>
       <loc>http://localhost:4000/metal/2020/10/01/aluminum-fatigue.html/</loc>
       
-        <lastmod>2020-10-01T14:47:07-04:00</lastmod>
+        <lastmod>2020-10-01T20:47:07+02:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -38,7 +53,7 @@
     <url>
       <loc>http://localhost:4000/about/</loc>
       
-        <lastmod>2023-07-24T15:58:43-04:00</lastmod>
+        <lastmod>2026-03-02T00:33:56+01:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -53,7 +68,7 @@
     <url>
       <loc>http://localhost:4000/categories/code/</loc>
       
-        <lastmod>2023-07-24T15:58:43-04:00</lastmod>
+        <lastmod>2026-03-02T00:33:56+01:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -64,28 +79,13 @@
     </url>
     
   
-    
-  
-    
-    <url>
-      <loc>http://localhost:4000/categories/home/</loc>
-      
-        <lastmod>2023-07-24T15:58:43-04:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.5</priority>
-      
-    </url>
     
   
     
     <url>
       <loc>http://localhost:4000/</loc>
       
-        <lastmod>2023-07-24T15:58:43-04:00</lastmod>
+        <lastmod>2026-03-02T00:33:56+01:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -100,7 +100,7 @@
     <url>
       <loc>http://localhost:4000/categories/little-things/</loc>
       
-        <lastmod>2023-07-24T15:58:43-04:00</lastmod>
+        <lastmod>2026-03-02T00:33:56+01:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -117,7 +117,22 @@
     <url>
       <loc>http://localhost:4000/categories/metal/</loc>
       
-        <lastmod>2023-07-24T15:58:43-04:00</lastmod>
+        <lastmod>2026-03-02T00:33:56+01:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:4000/categories/misc/</loc>
+      
+        <lastmod>2026-03-02T00:33:56+01:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
